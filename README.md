@@ -1,5 +1,7 @@
 # Sky Viewer
 
+**[▶ Watch the demo](https://youtu.be/L6EY8SLfnvI)** · **[Read the build report](https://claude.ai/artifact/W9cEwXDT2jRrDYgySSYuDF)**
+
 A desktop planetarium: see the stars, planets, Sun and Moon from any place on Earth, at any date and time.
 It opens at the current time, looking north at the horizon. Drag the sky around like a panorama.
 
@@ -35,8 +37,9 @@ its local time is shown as well. Your location and toggle settings are remembere
   and stars dim near the horizon (extinction). Turn it off to see every star regardless of daylight.
 
 ## Demo and report
-- 45-second demo: [youtu.be/L6EY8SLfnvI](https://youtu.be/L6EY8SLfnvI). The same video is also at `docs/report/sky-viewer-demo.mp4`.
-- Build report (catalog stats, accuracy checks, screenshots): `docs/report/`.
+- 🎥 **Demo video (45 seconds):** [youtu.be/L6EY8SLfnvI](https://youtu.be/L6EY8SLfnvI)
+- 📊 **Build report:** [claude.ai/artifact/W9cEwXDT2jRrDYgySSYuDF](https://claude.ai/artifact/W9cEwXDT2jRrDYgySSYuDF). It covers the catalog stats, accuracy checks, field-test screenshots and architecture.
+- The report's source, the video file and the screenshots are in `docs/report/`.
 
 ## Development
 - `node tools/test_core.js` runs the numerical checks of the astronomy and projection maths.
