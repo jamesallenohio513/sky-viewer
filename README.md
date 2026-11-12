@@ -5,11 +5,20 @@
 A desktop planetarium: see the stars, planets, Sun and Moon from any place on Earth, at any date and time.
 It opens at the current time, looking north at the horizon. Drag the sky around like a panorama.
 
-## Running it
-- Double-click **Sky Viewer** on the desktop, or `Sky Viewer.bat` in this folder.
-  It opens in its own window (Microsoft Edge app mode).
-- It works fully offline. There's no server, no install and no internet use.
-- You can also open `index.html` in any modern browser.
+## Quick start
+No install, no build step, no account. It runs entirely on your computer.
+
+1. **Get the files.** Either:
+   - click the green **Code** button above, then **Download ZIP**, and unzip it, or
+   - clone it: `git clone https://github.com/jamesallenohio513/sky-viewer.git`
+2. **Open it.** Double-click **`index.html`** to open it in your web browser (Chrome, Edge, Firefox or Safari).
+   - **On Windows:** double-click **`Sky Viewer.bat`** instead. It opens the app in its own Microsoft Edge window, like a desktop app.
+3. **Set your location.** Click the location at the top left, or the **Location** button, then search for your city.
+   The first time, it guesses your location from your computer's time zone.
+
+It works fully offline and never sends anything over the internet, so your location stays on your computer.
+
+**Optional desktop shortcut (Windows):** right-click `Sky Viewer.bat` → **Show more options** → **Send to** → **Desktop (create shortcut)**.
 
 ## Using it
 | Action | How |
