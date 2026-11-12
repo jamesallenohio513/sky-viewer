@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Viewer</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="sky"></canvas>
+
+<div id="hud">
+  <div id="hud-loc" title="Change location"></div>
+  <div id="hud-time"></div>
+  <div id="hud-sub"></div>
+</div>
+
+<div id="info" hidden>
+  <button id="info-close" class="icon" title="Close" aria-label="Close">&times;</button>
+  <div id="info-body"></div>
+</div>
+
+<div id="cursor"></div>
+
+<div id="bar">
+  <div class="group">
+    <input type="datetime-local" id="dt" step="1" title="Date and time (your computer's time zone)">
+    <button id="now" title="Jump to the current time">Now</button>
+  </div>
+  <div class="group">
+    <button data-step="-86400" title="Back one day">&minus;1d</button>
+    <button data-step="-3600" title="Back one hour">&minus;1h</button>
+    <button data-step="-600" title="Back ten minutes">&minus;10m</button>
+    <button data-step="600" title="Forward ten minutes">+10m</button>
+    <button data-step="3600" title="Forward one hour">+1h</button>
+    <button data-step="86400" title="Forward one day">+1d</button>
+  </div>
+  <div class="group">
+    <label for="rate" class="lbl">Time</label>
+    <select id="rate" title="How fast time flows (Space pauses / resumes)">
+      <option value="-3600">&#x23EA; 1 hour/sec</option>
+      <option value="-600">&#x23EA; 10 min/sec</option>
+      <option value="0">&#x23F8; Paused</option>
+      <option value="1" selected>&#x25B6; Real time</option>
+      <option value="60">&#x23E9; 1 min/sec</option>
+      <option value="600">&#x23E9; 10 min/sec</option>
+      <option value="3600">&#x23E9; 1 hour/sec</option>
+      <option value="86400">&#x23E9; 1 day/sec</option>
+    </select>
+  </div>
+  <div class="group">
+    <button data-look="0" title="Look north">N</button>
+    <button data-look="90" title="Look east">E</button>
+    <button data-look="180" title="Look south">S</button>
+    <button data-look="270" title="Look west">W</button>
+    <button data-look="up" title="Look straight up">&#x2191; Up</button>
+  </div>
+  <div class="group toggles">
+    <button data-toggle="lines" title="Constellation lines (C)">Lines</button>
+    <button data-toggle="cnames" title="Constellation names (V)">Constellations</button>
+    <button data-toggle="snames" title="Star &amp; planet names (L)">Labels</button>
+    <button data-toggle="grid" title="Altitude/azimuth grid (G)">Alt/Az grid</button>
+    <button data-toggle="eqgrid" title="Equatorial RA/Dec grid (Q)">RA/Dec grid</button>
+    <button data-toggle="ground" title="Ground (H)">Ground</button>
+    <button data-toggle="atmosphere" title="Atmosphere: daylight, twilight, extinction (A)">Atmosphere</button>
+  </div>
+  <div class="group">
+    <button id="loc-btn" title="Set your location">&#x1F4CD; Location</button>
+    <button id="help-btn" class="icon" title="Help">?</button>
+  </div>
+</div>
+
+<dialog id="loc-dlg">
+  <form method="dialog" id="loc-form">
+    <h2>Location</h2>
+    <label class="field">Search cities
+      <input type="search" id="city-q" placeholder="Type a city…" autocomplete="off">
+    </label>
+    <ul id="city-list"></ul>
+    <div class="row">
+      <label class="field">Latitude (° north +, south −)
+        <input type="number" id="lat" step="any" min="-90" max="90" required>
+      </label>
+      <label class="field">Longitude (° east +, west −)
+        <input type="number" id="lon" step="any" min="-180" max="180" required>
+      </label>
+    </div>
+    <label class="field">Place name
+      <input type="text" id="loc-name" maxlength="60">
+    </label>
+    <p id="geo-msg" class="msg"></p>
+    <div class="actions">
+      <button type="button" id="geo-btn">Use my current location</button>
+      <span class="spacer"></span>
+      <button value="cancel" formnovalidate>Cancel</button>
+      <button value="ok" id="loc-ok" class="primary">Set location</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="help-dlg">
+  <form method="dialog">
+    <h2>Sky Viewer</h2>
+    <ul class="help">
+      <li><b>Drag</b> the sky to look around. <b>Scroll</b> to zoom in and out (or pinch on a touchscreen).</li>
+      <li><b>Click</b> a star or planet for details. <b>Double-click</b> to centre it.</li>
+      <li>Arrow keys pan, <b>+</b>/<b>−</b> zoom, <b>Space</b> pauses or resumes time.</li>
+      <li>Toggles: <b>C</b> lines, <b>V</b> constellation names, <b>L</b> labels, <b>G</b> alt/az grid, <b>Q</b> RA/Dec grid, <b>H</b> ground, <b>A</b> atmosphere.</li>
+      <li>The date and time are in your computer's time zone. UTC is shown under the clock.</li>
+      <li>With <b>Atmosphere</b> on, the sky brightens with the Sun, twilight hides faint stars, and stars dim near the horizon. Turn it off to see every star at any hour.</li>
+    </ul>
+    <p class="small">Positions come from <i>astronomy-engine</i>. Stars are corrected for precession, nutation and atmospheric refraction. The Sun, Moon and planets also include light-time, aberration and parallax. Stars come from the Hipparcos/Yale Bright Star catalogs (via d3-celestial), down to magnitude 6.</p>
+    <div class="actions"><span class="spacer"></span><button value="ok" class="primary">Close</button></div>
+  </form>
+</dialog>
+
+<script src="vendor/astronomy.browser.min.js"></script>
+<script src="data/sky-data.js"></script>
+<script src="js/skycore.js"></script>
+<script src="js/cities.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

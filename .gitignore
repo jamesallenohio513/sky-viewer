@@ -1,0 +1,10 @@
+# test / recording artefacts
+frames/
+shots/
+*_profile_*/
+prof_*/
+*.log
+node_modules/
+__pycache__/
+.venv/
+venv/
