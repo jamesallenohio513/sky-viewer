@@ -14,7 +14,7 @@ canvas#sky { position: fixed; inset: 0; width: 100vw; height: 100vh; display: bl
 canvas#sky.dragging { cursor: grabbing; }
 
 #hud {
-  position: fixed; top: 12px; left: 14px; pointer-events: none;
+  position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); left: max(14px, env(safe-area-inset-left, 0px)); pointer-events: none;
   text-shadow: 0 1px 3px #000, 0 0 8px #000;
 }
 #hud-loc { font-size: 15px; font-weight: 600; pointer-events: auto; cursor: pointer; }
@@ -29,7 +29,7 @@ canvas#sky.dragging { cursor: grabbing; }
 }
 
 #info {
-  position: fixed; top: 12px; right: 14px; width: 290px; padding: 12px 14px;
+  position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); width: 290px; padding: 12px 14px;
   background: var(--panel); border: 1px solid var(--panel-border); border-radius: 10px;
   font-size: 13px; line-height: 1.55; backdrop-filter: blur(6px);
 }
@@ -42,7 +42,9 @@ canvas#sky.dragging { cursor: grabbing; }
 
 #bar {
   position: fixed; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 6px 14px;
-  align-items: center; padding: 8px 12px; background: var(--panel);
+  align-items: center; background: var(--panel);
+  /* clear phone system bars (insets are 0 on desktop) */
+  padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
   border-top: 1px solid var(--panel-border); backdrop-filter: blur(6px);
 }
 .group { display: flex; gap: 4px; align-items: center; }
@@ -81,9 +83,20 @@ dialog h2 { margin: 0 0 12px; font-size: 18px; font-weight: 600; }
 .msg { font-size: 12px; color: var(--muted); min-height: 16px; margin: 0 0 6px; }
 .help { padding-left: 18px; line-height: 1.6; font-size: 14px; }
 .small { font-size: 12px; color: var(--muted); }
+.small a { color: var(--accent); }
+
+button { white-space: nowrap; }
+.group { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+#hud { right: max(14px, env(safe-area-inset-right, 0px)); }
 
 @media (max-width: 700px) {
-  #bar { gap: 6px; padding: 6px 8px; }
-  .toggles button { padding: 4px 6px; }
-  #info { width: calc(100vw - 28px); top: auto; bottom: 120px; }
+  #bar { gap: 5px 8px; padding-top: 6px; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+  button, select { padding: 3px 7px; height: 28px; font-size: 12px; }
+  input[type=datetime-local] { width: 190px; font-size: 12px; height: 28px; }
+  .lbl { display: none; }
+  #hud-loc { font-size: 13px; }
+  #hud-time { font-size: 17px; }
+  #hud-sub { font-size: 11px; }
+  #cursor { display: none; }
+  #info { width: auto; left: max(14px, env(safe-area-inset-left, 0px)); top: auto; bottom: 190px; }
 }

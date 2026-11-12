@@ -1,12 +1,14 @@
 # Sky Viewer
 
-**[▶ Watch the demo](https://youtu.be/L6EY8SLfnvI)** · **[Read the build report](https://claude.ai/artifact/W9cEwXDT2jRrDYgySSYuDF)**
+**[🌌 Try it in your browser](https://claude.ai/artifact/H2xuVZgJsJyDyDtK6UJR41)** · **[▶ Watch the demo](https://youtu.be/L6EY8SLfnvI)** · **[Read the build report](https://claude.ai/artifact/W9cEwXDT2jRrDYgySSYuDF)**
 
 A desktop planetarium: see the stars, planets, Sun and Moon from any place on Earth, at any date and time.
 It opens at the current time, looking north at the horizon. Drag the sky around like a panorama.
 
 ## Quick start
-No install, no build step, no account. It runs entirely on your computer.
+**Just want to look?** [Open Sky Viewer in your browser](https://claude.ai/artifact/H2xuVZgJsJyDyDtK6UJR41). There's nothing to download. The web version can't use "Use my current location", so search for your city instead.
+
+**To run it locally** (offline, no install, no build step, no account):
 
 1. **Get the files.** Either:
    - click the green **Code** button above, then **Download ZIP**, and unzip it, or
