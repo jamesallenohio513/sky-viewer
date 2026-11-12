@@ -16,7 +16,7 @@ No install, no build step, no account. It runs entirely on your computer.
 3. **Set your location.** Click the location at the top left, or the **Location** button, then search for your city.
    The first time, it guesses your location from your computer's time zone.
 
-It works fully offline and never sends anything over the internet, so your location stays on your computer.
+It works fully offline. The app itself makes no network requests, so your location stays on your computer. The one exception: if you click **Use my current location**, your browser may ask its own location service where you are.
 
 **Optional desktop shortcut (Windows):** right-click `Sky Viewer.bat` → **Show more options** → **Send to** → **Desktop (create shortcut)**.
 
