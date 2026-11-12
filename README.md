@@ -47,3 +47,6 @@ its local time is shown as well. Your location and toggle settings are remembere
 ## Credits
 - Star catalog data: [d3-celestial](https://github.com/ofrohn/d3-celestial) © Olaf Frohn, BSD-3-Clause. See `raw/LICENSE-d3-celestial.txt`.
 - [astronomy-engine](https://github.com/cosinekitty/astronomy) © Don Cross, MIT. The licence is in the headers of the `vendor/` files.
+
+## License
+Sky Viewer's own code is MIT-licensed (see `LICENSE`). Bundled third-party data and libraries keep their own licences, listed under Credits.
